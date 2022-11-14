@@ -14,6 +14,10 @@ ls cd Adafruit_Python_ADS1x15 --> sudo python setup.py install
 ls cd examples --> sudo python simpletest.py
 cd 
 sudo apt-get install python-matplotlib
+sudo apt-get install python-pip12
+sudo pip install drawnow
+sudo nano scope.py
+save ctrl o and run scope.py
 '''
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation

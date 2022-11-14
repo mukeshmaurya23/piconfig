@@ -26,6 +26,13 @@ sudo make install
 cd /etc
 sudo mkdir nfc
 sudo nano /etc/nfc/libnfc.conf
+ add this line
+allow_autoscan = true
+allow_intrusive_scan = false
+log_level = 1
+#for I2C
+device.name = "_PN532_I2c"
+device.connstring = "pn532_i2c:/dev/i2c-1"
 
  i2cdetect –yes 1
  nfc list
@@ -34,20 +41,12 @@ sudo nano /etc/nfc/libnfc.conf
 '''
 import subprocess
 import time
-
-
 def nfc_raw():
-    lines = subprocess.check_output("/usr/bin/nfc-poll",
-                                    stderr=open('/dev/null', 'w'))
+    lines = subprocess.check_output("/usr/bin/nfc-poll",stderr=open('/dev/null', 'w'))
     return lines
-
-
 def read_nfc():
-
     lines = nfc_raw()
     return lines
-
-
 try:
     while True:
         myLines = read_nfc()
